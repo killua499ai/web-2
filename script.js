@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (transportSelect) {
         transportSelect.addEventListener('change', (e) => {
             const val = e.target.value;
-            // Animation for counter
             let start = 0;
             const end = parseFloat(val);
             const duration = 500;
@@ -18,9 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
                 const currentVal = (progress * (end - start) + start).toFixed(1);
-                calcResult.innerHTML = `${currentVal}<span class="text-lg ml-2">Tons</span>`;
+                calcResult.innerHTML = `${currentVal}<span class="text-lg ml-2"> Tons</span>`;
                 if (progress < 1) requestAnimationFrame(updateCounter);
             }
+
             requestAnimationFrame(updateCounter);
         });
     }
@@ -32,8 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         let current = "";
+
         sections.forEach(section => {
-            if (pageYOffset >= section.offsetTop - 200) {
+            if (window.pageYOffset >= section.offsetTop - 200) {
                 current = section.getAttribute('id');
             }
         });
@@ -63,12 +64,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // 4. Enhanced Quiz (Based on PDF Data)
+    // 4. Quiz with 10 items
     const quizData = [
-        { q: "Since what year have humans been the main driver of climate change?", opts: ["1600s", "1750s", "1800s", "1950s"], answer: 2 },
-        { q: "The Philippines is particularly vulnerable as a...?", opts: ["Island Oasis", "Developing country", "Industrial hub", "Tundra region"], answer: 1 },
-        { q: "What percentage of deforestation is mining responsible for?", opts: ["3%", "7%", "15%", "22%"], answer: 1 },
-        { q: "Which gas is trapped in coal seams and released during mining?", opts: ["Oxygen", "Carbon", "Methane", "Argon"], answer: 2 }
+        {
+            q: "Since what period have human activities been the main driver of climate change?",
+            opts: ["Since the 1500s", "Since the 1800s", "Since 2000", "Since 2020"],
+            answer: 1
+        },
+        {
+            q: "Which country is highlighted as highly vulnerable to climate change on this page?",
+            opts: ["Japan", "Australia", "The Philippines", "Canada"],
+            answer: 2
+        },
+        {
+            q: "What is the main gas released by burning fossil fuels?",
+            opts: ["Hydrogen", "Carbon dioxide", "Helium", "Nitrogen"],
+            answer: 1
+        },
+        {
+            q: "Which activity is said to contribute 7% of subtropical deforestation?",
+            opts: ["Fishing", "Mining", "Tourism", "Transportation"],
+            answer: 1
+        },
+        {
+            q: "What gas can be released during mining from coal seams?",
+            opts: ["Methane", "Oxygen", "Neon", "Steam"],
+            answer: 0
+        },
+        {
+            q: "Which of these is a renewable energy source?",
+            opts: ["Coal", "Diesel", "Solar", "Gasoline"],
+            answer: 2
+        },
+        {
+            q: "Why are trees important in climate mitigation?",
+            opts: ["They produce plastic", "They absorb CO2", "They create methane", "They increase mining"],
+            answer: 1
+        },
+        {
+            q: "What do CFC gases damage?",
+            opts: ["The ozone layer", "Roads", "Mountains", "Solar panels"],
+            answer: 0
+        },
+        {
+            q: "What is a benefit of methane capture?",
+            opts: ["It increases smoke", "It prevents methane from escaping", "It destroys forests", "It creates oil"],
+            answer: 1
+        },
+        {
+            q: "Which is an example of a nature-based solution?",
+            opts: ["Mangrove restoration", "Burning coal", "Oil drilling", "Plastic dumping"],
+            answer: 0
+        }
     ];
 
     let quizAnswered = new Array(quizData.length).fill(null);
@@ -76,34 +123,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function buildQuiz() {
         if (!quizContainer) return;
+
+        quizContainer.innerHTML = "";
+
         quizData.forEach((q, qi) => {
             const div = document.createElement('div');
             div.className = 'bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm fade-up';
+
             div.innerHTML = `
                 <div class="flex gap-4 mb-6">
-                    <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm italic">${qi+1}</span>
+                    <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm italic">${qi + 1}</span>
                     <p class="font-bold text-slate-800 text-lg">${q.q}</p>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="q${qi}-opts"></div>
             `;
+
             quizContainer.appendChild(div);
+
+            const optionsContainer = div.querySelector(`#q${qi}-opts`);
 
             q.opts.forEach((o, oi) => {
                 const btn = document.createElement('button');
                 btn.className = 'quiz-opt text-left px-6 py-4 rounded-2xl font-semibold text-slate-500 border-2 border-slate-50';
                 btn.textContent = o;
-                btn.onclick = () => {
+
+                btn.addEventListener('click', () => {
                     if (quizAnswered[qi] !== null) return;
+
                     quizAnswered[qi] = oi;
-                    const btns = div.querySelectorAll('button');
+                    const btns = optionsContainer.querySelectorAll('button');
+
                     btns.forEach((b, i) => {
-                        if (i === q.answer) b.classList.add('correct');
-                        else if (i === oi) b.classList.add('wrong');
+                        b.disabled = true;
+                        if (i === q.answer) {
+                            b.classList.add('correct');
+                        } else if (i === oi) {
+                            b.classList.add('wrong');
+                        }
                     });
-                    if (quizAnswered.every(a => a !== null)) showResults();
-                };
-                div.querySelector(`#q${qi}-opts`).appendChild(btn);
+
+                    if (quizAnswered.every(a => a !== null)) {
+                        showResults();
+                    }
+                });
+
+                optionsContainer.appendChild(btn);
             });
+
             observer.observe(div);
         });
     }
@@ -116,54 +182,82 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     buildQuiz();
-});
 
+    // 5. Modal Logic for image and video
+    const modal = document.getElementById('infoModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalImg = document.getElementById('modalImg');
+    const modalVideoWrapper = document.getElementById('modalVideoWrapper');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalVideoSource = document.getElementById('modalVideoSource');
+    const closeModal = document.getElementById('closeModal');
 
+    function openModal({ title, desc, img = '', video = '' }) {
+        modalTitle.textContent = title || '';
+        modalDesc.textContent = desc || '';
 
+        if (video) {
+            modalVideoSource.src = video;
+            modalVideo.load();
+            modalVideoWrapper.classList.remove('hidden');
 
+            modalImg.classList.add('hidden');
+            modalImg.src = '';
+        } else if (img) {
+            modalImg.src = img;
+            modalImg.classList.remove('hidden');
 
+            modalVideo.pause();
+            modalVideoSource.src = '';
+            modalVideo.load();
+            modalVideoWrapper.classList.add('hidden');
+        } else {
+            modalImg.classList.add('hidden');
+            modalImg.src = '';
+            modalVideo.pause();
+            modalVideoSource.src = '';
+            modalVideo.load();
+            modalVideoWrapper.classList.add('hidden');
+        }
 
-
-
-
-
-
-
-// 5. POPUP MODAL LOGIC
-const modal = document.getElementById('infoModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalDesc = document.getElementById('modalDesc');
-const modalImg = document.getElementById('modalImg');
-const closeModal = document.getElementById('closeModal');
-
-document.querySelectorAll('.info-card').forEach(card => {
-    card.addEventListener('click', () => {
-        modalTitle.textContent = card.dataset.title;
-        modalDesc.textContent = card.dataset.desc;
-        modalImg.src = card.dataset.img;
         modal.classList.remove('hidden');
         modal.classList.add('flex');
-    });
-});
+    }
 
-closeModal.addEventListener('click', () => {
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-});
-
-// close when clicking outside
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
+    function closeModalFunc() {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
+        modalVideo.pause();
     }
+
+    // Causes cards -> image modal
+    document.querySelectorAll('.info-card').forEach(card => {
+        card.addEventListener('click', () => {
+            openModal({
+                title: card.dataset.title,
+                desc: card.dataset.desc,
+                img: card.dataset.img
+            });
+        });
+    });
+
+    // Strategy cards -> video modal
+    document.querySelectorAll('.strategy-card').forEach(card => {
+        card.addEventListener('click', () => {
+            openModal({
+                title: card.dataset.title,
+                desc: card.dataset.desc,
+                video: card.dataset.video
+            });
+        });
+    });
+
+    closeModal.addEventListener('click', closeModalFunc);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModalFunc();
+        }
+    });
 });
-
-
-
-
-
-
-
-
-

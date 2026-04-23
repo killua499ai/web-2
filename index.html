@@ -8,18 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-       <!-- POPUP MODAL -->
-<div id="infoModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
-    <div class="bg-white max-w-lg w-full rounded-3xl p-6 relative shadow-2xl animate-fadeIn">
-        <button id="closeModal" class="absolute top-3 right-4 text-xl font-bold text-gray-500 hover:text-black">&times;</button>
-        
-        <img id="modalImg" src="" class="w-full h-56 object-cover rounded-xl mb-4" alt="">
-     
-        <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
-        <p id="modalDesc" class="text-slate-600"></p>
-
-    </div>
-</div>
+      
 </head>
 
 <body class="bg-[#f8fafc] font-body text-slate-900 flex flex-col min-h-screen">
@@ -137,54 +126,65 @@ data-img=OIP.jpg>
                 <div class="h-1.5 w-20 bg-emerald-500 mx-auto rounded-full"></div>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="group bg-green-300 p-10 rounded-[2.5rem] shadow-sm hover:-translate-y-2 transition-all duration-500 border border-slate-100 fade-up cursor-pointer"> 
+           <div class="grid md:grid-cols-3 gap-8">
 
-                    <div class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-500 mb-8 group-hover:bg-amber-500 group-hover:text-white transition-colors">
-                        <i data-lucide="zap" class="w-8 h-8"></i>
-                    </div>
-                    
-                    <h3 class="text-2xl font-bold mb-4">Energy Decarbonization</h3>
-                    <p class="text-slate-500 leading-relaxed mb-6">Transitioning from fossil fuels to renewable sources like solar, wind, and geothermal. This stops the "drastic release of CO2" noted since the Industrial Revolution.</p>
-                    <ul class="text-sm space-y-2 text-slate-600">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Solar Farm Integration</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Wind Energy Expansion</li>
-                    </ul>
-                </div>
+    <div class="group bg-green-300 p-10 rounded-[2.5rem] shadow-sm hover:-translate-y-2 transition-all duration-500 border border-slate-100 fade-up cursor-pointer strategy-card"
+        data-title="Energy Decarbonization"
+        data-desc="Transitioning from fossil fuels to renewable energy sources like solar, wind, and geothermal helps reduce carbon emissions."
+        data-video="What Is Decarbonization.mp4">
 
-               <div class="group bg-green-300 p-10 rounded-[2.5rem] shadow-sm hover:-translate-y-2 transition-all duration-500 border border-slate-100 fade-up cursor-pointer"
-    data-title="Volcanoes"
-data-desc="Volcanic eruptions release large amounts of CO2 and ash into the atmosphere."
-data-video=>     
-
-                    <div class="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-8 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        <i data-lucide="tree-pine" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Nature-Based Solutions</h3>
-                    <p class="text-slate-500 leading-relaxed mb-6">Combatting the 7% of deforestation caused by mining through massive reforestation. Trees act as natural "carbon sinks" to absorb CO2.</p>
-                    <ul class="text-sm space-y-2 text-slate-600">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Mangrove Restoration</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Protected Forest Zones</li>
-                    </ul>
-                </div>
-
-                 <div class="group bg-green-300 p-10 rounded-[2.5rem] shadow-sm hover:-translate-y-2 transition-all duration-500 border border-slate-100 fade-up cursor-pointer"
-    data-title="Volcanoes"
-data-desc="Volcanic eruptions release large amounts of CO2 and ash into the atmosphere."
-data-video="">
-                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        <i data-lucide="wind" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Methane Capture</h3>
-                    <p class="text-slate-500 leading-relaxed mb-6">Implementing technology in mining sites and landfills to capture methane gas before it escapes into the atmosphere.</p>
-                    <ul class="text-sm space-y-2 text-slate-600">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Mining Vent Filtration</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Landfill Gas-to-Energy</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-500 mb-8 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+            <i data-lucide="zap" class="w-8 h-8"></i>
         </div>
-    </section>
+
+        <h3 class="text-2xl font-bold mb-4">Energy Decarbonization</h3>
+        <p class="text-slate-500 leading-relaxed mb-6">
+            Transitioning from fossil fuels to renewable sources like solar, wind, and geothermal.
+        </p>
+        <ul class="text-sm space-y-2 text-slate-600">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Solar Farm Integration</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Wind Energy Expansion</li>
+        </ul>
+    </div>
+
+    <div class="group bg-green-300 p-10 rounded-[2.5rem] shadow-sm hover:-translate-y-2 transition-all duration-500 border border-slate-100 fade-up cursor-pointer strategy-card"
+        data-title="Nature-Based Solutions"
+        data-desc="Reforestation, mangrove restoration, and forest protection absorb carbon dioxide and reduce environmental damage."
+        data-video="nature.mp4">
+
+        <div class="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-8 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+            <i data-lucide="tree-pine" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Nature-Based Solutions</h3>
+        <p class="text-slate-500 leading-relaxed mb-6">
+            Combatting deforestation through reforestation and ecosystem restoration.
+        </p>
+        <ul class="text-sm space-y-2 text-slate-600">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Mangrove Restoration</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Protected Forest Zones</li>
+        </ul>
+    </div>
+
+    <div class="group bg-green-300 p-10 rounded-[2.5rem] shadow-sm hover:-translate-y-2 transition-all duration-500 border border-slate-100 fade-up cursor-pointer strategy-card"
+        data-title="Methane Capture"
+        data-desc="Capturing methane from mining sites and landfills prevents a powerful greenhouse gas from entering the atmosphere."
+        data-video="Are Methane Emissions Driving Us To A 3°C World.mp4">
+
+        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <i data-lucide="wind" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Methane Capture</h3>
+        <p class="text-slate-500 leading-relaxed mb-6">
+            Implementing technology in mining sites and landfills to capture methane gas.
+        </p>
+        <ul class="text-sm space-y-2 text-slate-600">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Mining Vent Filtration</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Landfill Gas-to-Energy</li>
+        </ul>
+    </div>
+
+</div>
+</section>
 
       <section id="calculator" class="py-24 px-8 bg-slate-900 rounded-[4rem] mx-4 overflow-hidden relative">
         <div class="max-w-4xl mx-auto text-center relative z-10">
@@ -255,6 +255,26 @@ data-video="">
     </footer>
 
     <script src="script.js"></script>
- 
+ <!-- INFO / VIDEO MODAL -->
+<div id="infoModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white max-w-2xl w-full rounded-3xl p-6 relative shadow-2xl animate-fadeIn">
+        <button id="closeModal" class="absolute top-3 right-4 text-xl font-bold text-gray-500 hover:text-black">&times;</button>
+
+        <!-- Image content -->
+        <img id="modalImg" src="" class="w-full h-56 object-cover rounded-xl mb-4 hidden" alt="">
+
+        <!-- Video content -->
+        <div id="modalVideoWrapper" class="hidden mb-4">
+            <video id="modalVideo" controls class="w-full rounded-xl h-64 bg-black">
+                <source id="modalVideoSource" src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
+        <p id="modalDesc" class="text-slate-600"></p>
+    </div>
+</div>
+
 </body>
 </html>
