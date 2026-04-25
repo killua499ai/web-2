@@ -1,6 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 
+    
+
+const introSection = document.getElementById("climate-intro");
+const closeIntro = document.getElementById("closeIntro");
+
+document.querySelector('a[href="#climate-intro"]').addEventListener("click", (e) => {
+    e.preventDefault();
+    introSection.classList.remove("hidden");
+});
+
+closeIntro.addEventListener("click", () => {
+    introSection.classList.add("hidden");
+});
+
+
+
+    
+    
     // 1. Interactive Calculator Logic
     const transportSelect = document.getElementById('calc-transport');
     const calcResult = document.getElementById('calc-result');
@@ -261,3 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+
+

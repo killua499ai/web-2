@@ -118,3 +118,94 @@ h1, h2, h3, .font-display {
 
 
 
+.calc-btn {
+    background: #ffffff10;
+    border: 1px solid #ffffff20;
+    padding: 14px 20px;
+    border-radius: 1rem;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+    text-align: left;
+}
+.calc-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+
+
+
+#modalImg {
+    animation: popZoom 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.info-card, .strategy-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.info-card:hover, .strategy-card:hover {
+    transform: translateY(-10px) scale(1.03) rotate(0.3deg);
+    box-shadow: 0 25px 60px -15px rgba(0,0,0,0.25);
+}
+
+
+
+@keyframes popScreen {
+    from { opacity: 0; transform: scale(0.55); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.animate-pop {
+    animation: popScreen 0.4s ease;
+}
+
+
+
+/* Float Card Animation */
+@keyframes floatCard {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+  100% { transform: translateY(0px); }
+}
+.float-card {
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+/* Intro Pop Animation */
+@keyframes popIntro {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-popIntro {
+  animation: popIntro 0.4s ease;
+}
+
+/* Video Pop Animation */
+@keyframes videoPop {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-videoPop {
+  animation: videoPop 0.35s ease;
+}
+
+
+
+
+
+
+
+
